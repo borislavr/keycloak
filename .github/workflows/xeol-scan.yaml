@@ -21,4 +21,4 @@ jobs:
           output-format: json
       - name: Publish result
         run: |
-          cat ${{ steps.xeol-scan-json.uotputs.report }} >> $GITHUB_STEP_SUMMARY
+          cat ${{ steps.xeol-scan-json.outputs.report }} >> $GITHUB_STEP_SUMMARY
