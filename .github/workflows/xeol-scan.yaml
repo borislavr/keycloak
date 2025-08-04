@@ -1,0 +1,24 @@
+name: XEOL scan
+on:
+  workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  xeol-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Scan current project
+        uses: xeol-io/xeol-action@v1.0.7
+        with:
+          path: "."
+      - name: Scan current project
+        id: xeol-scan-json
+        uses: xeol-io/xeol-action@v1.0.7
+        with:
+          path: "."
+          output-format: json
+      - name: Publish result
+        run: |
+          cat ${{ steps.xeol-scan-json.uotputs.report }} >> $GITHUB_STEP_SUMMARY
